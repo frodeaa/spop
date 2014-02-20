@@ -81,7 +81,7 @@ def dmenu(items):
     if len(out) == 0:
         return None
 
-    out = out[:-1].decode()
+    out = out.decode("utf-8")
     return items.index(out)
 
 def dmenu_input(prompt):
