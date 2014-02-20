@@ -50,9 +50,9 @@ class SpopClient:
 
         buf = b""
         while True:
-            tmp = self._sock.recv(128)
+            tmp = self._sock.recv(1024)
             buf += tmp
-            if len(tmp) < 128:
+            if len(tmp) < 1024:
                 try:
                     obj = json.loads(buf.decode())
                     return obj
