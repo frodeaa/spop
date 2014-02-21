@@ -72,15 +72,11 @@ def dmenu(items):
     args = ["dmenu"]
     args.extend(DMENU_OPTS)
     p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    for it in items:
-        p.stdin.write((it+"\n").encode())
-
-    out, _ = p.communicate()
+    out = (p.communicate(("\n".join(items)).encode("utf-8"))[0]).decode("utf-8").rstrip()
 
     if len(out) == 0:
         return None
 
-    out = out[:-1].decode()
     return items.index(out)
 
 def dmenu_input(prompt):
